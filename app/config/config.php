@@ -5,5 +5,5 @@
     define("db", "persuratan");
 
     //base url
-    define("BASE_URL", "http/localhost/Back-end-Persuratan/public");
+    define("BASE_URL", "http/localhost/Back-end-Persuratan/public/");
 ?>
