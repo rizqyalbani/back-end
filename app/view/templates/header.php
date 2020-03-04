@@ -6,3 +6,7 @@
     <title><?= $data ?></title>
 </head>
 <body>
+    <ol>
+        <li><a href="<?= BASE_URL?>admin/addDataSuratMasuk">Surat Masuk</a></li>
+        <li><a href="<?= BASE_URL?>admin/addDataSuratKeluar">Surat Keluar</a></li>
+    </ol>

@@ -10,7 +10,8 @@
 
         public function __CONSTRUCT(){
             //database source
-            $dsn = "mysqli:host" . $this->host . "; dbName=" . $this->db;
+            $dsn = "mysql:host=" . $this->host . "; dbname=" . $this->dbName;
+            // echo $dsn;
 
             $option = [
                 PDO::ATTR_PERSISTENT => true,
@@ -20,11 +21,11 @@
             //connect, mirip kayak mysqli_connect
             try{
                 // new PDO($dsn, $user, $pass)
-                $this->dbh = new PDO($this->dsn, $this->user, $this->pass);
+                $this->dbh = new PDO($dsn, $this->user, $this->pass, $option);
             }
             //kalo error tangkap errornya simpan di variable e lalu tampilkan pesannya
             catch(PDOException $e){
-                die($e->getMessage);
+                die( $e->getMessage() );
             }
         //end of constructs
         }
@@ -74,7 +75,7 @@
 
         //menghitung baris yang terpengaruh
         public function rowCount(){
-            $this->stmt->rowCount();
+            return $this->stmt->rowCount();
         }
 
     //end of class
