@@ -27,6 +27,7 @@
                                 )";
                     
             $this->db->query($query);
+            // mengkaitkan data untuk di query
             $this->db->bind(':lampiran_surat_masuk', $lampiran_surat );
             $this->db->bind(':alamat_pengirim', $alamat_surat);
             $this->db->bind(':tanggal_surat_masuk', $tanggal_surat);
@@ -34,7 +35,18 @@
             $this->db->bind(':perihal_surat_masuk',$perihal_surat);
 
             $this->db->execute();
+            // penghitung apakah ada baris yang terpengahruh
             return $this->db->rowCount();
+        // end of add surat masuk 
+        }
+        
+        public function getAllSuratMasuk(){
+            $query = "SELECT * FROM " . $this->table;
+            //function query ada di db-wrapper
+            $this->db->query($query);
+            //function untuk ambil semua data, ada di file db-wrapper
+            return $this->db->allResult();
+        // end of surat masuk function
         }
     }
 ?>

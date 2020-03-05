@@ -17,7 +17,8 @@
 
             $data = [
                 "judul" => "Tambah Surat Masuk",
-                "process" => "admin/AddDataSuratMasuk"
+                "process" => "admin/AddDataSuratMasuk",
+                "surat" => $this->model("suratMasukModel")->getAllSuratMasuk()
             ];
 
             $this->view("templates/header", $data['judul']);
@@ -36,7 +37,8 @@
         public function addDataSuratKeluar(){
             $data = [
                 "judul" => "Tambah Surat Keluar",
-                "process" => "admin/AddDataSuratKeluar"
+                "process" => "admin/AddDataSuratKeluar",
+                "surat" => $this->model("suratKeluarModel")->getAllSuratKeluar()
             ];
 
             $this->view("templates/header", $data['judul']);
