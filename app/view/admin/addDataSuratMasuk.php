@@ -64,7 +64,7 @@
             <!-- modal -->
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDisposisi">
-                Lihat Disposisi
+                Kirim Disposisi
             </button>
         </td>
     </tr>
