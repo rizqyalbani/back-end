@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Mar 2020 pada 02.03
+-- Waktu pembuatan: 08 Mar 2020 pada 12.26
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -21,6 +21,42 @@ SET time_zone = "+00:00";
 --
 -- Database: `persuratan_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_disposisi`
+--
+
+CREATE TABLE `tbl_disposisi` (
+  `id_disposisi` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `tanggal_penyelesaian` date NOT NULL,
+  `no_agenda` int(11) NOT NULL,
+  `id_jenis_disposisi` int(11) NOT NULL,
+  `instruksi` varchar(225) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_jenis_disposisi`
+--
+
+CREATE TABLE `tbl_jenis_disposisi` (
+  `id_jenis_disposisi` int(11) NOT NULL,
+  `jenis_disposisi` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_jenis_disposisi`
+--
+
+INSERT INTO `tbl_jenis_disposisi` (`id_jenis_disposisi`, `jenis_disposisi`) VALUES
+(1, 'Rahasia'),
+(2, 'Penting'),
+(3, 'Rutin');
 
 -- --------------------------------------------------------
 
@@ -149,6 +185,20 @@ CREATE TABLE `tbl_user` (
 --
 
 --
+-- Indeks untuk tabel `tbl_disposisi`
+--
+ALTER TABLE `tbl_disposisi`
+  ADD PRIMARY KEY (`id_disposisi`),
+  ADD KEY `jenis_disposisi` (`id_jenis_disposisi`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indeks untuk tabel `tbl_jenis_disposisi`
+--
+ALTER TABLE `tbl_jenis_disposisi`
+  ADD PRIMARY KEY (`id_jenis_disposisi`);
+
+--
 -- Indeks untuk tabel `tbl_role`
 --
 ALTER TABLE `tbl_role`
@@ -193,6 +243,18 @@ ALTER TABLE `tbl_user`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `tbl_disposisi`
+--
+ALTER TABLE `tbl_disposisi`
+  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_jenis_disposisi`
+--
+ALTER TABLE `tbl_jenis_disposisi`
+  MODIFY `id_jenis_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `tbl_role`
 --
 ALTER TABLE `tbl_role`
@@ -231,6 +293,12 @@ ALTER TABLE `tbl_user`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `tbl_disposisi`
+--
+ALTER TABLE `tbl_disposisi`
+  ADD CONSTRAINT `tbl_disposisi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tbl_serah_terima_dokumen`
