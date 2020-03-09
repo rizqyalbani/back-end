@@ -1,8 +1,8 @@
 <?php
     Class App{
         protected
-            $controller = "Admin",
-            $method = "Index",
+            $controller = "Home",
+            $method = "index",
             $params = [];
 
         public function parseUrl(){
