@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Mar 2020 pada 12.26
+-- Waktu pembuatan: 17 Mar 2020 pada 06.26
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -32,11 +32,21 @@ CREATE TABLE `tbl_disposisi` (
   `id_disposisi` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `tanggal_penyelesaian` date NOT NULL,
-  `no_agenda` int(11) NOT NULL,
+  `no_agenda` varchar(11) NOT NULL,
   `id_jenis_disposisi` int(11) NOT NULL,
   `instruksi` varchar(225) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `id_user` int(11) NOT NULL,
+  `id_surat_masuk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_disposisi`
+--
+
+INSERT INTO `tbl_disposisi` (`id_disposisi`, `tanggal`, `tanggal_penyelesaian`, `no_agenda`, `id_jenis_disposisi`, `instruksi`, `id_user`, `id_surat_masuk`) VALUES
+(1, '2020-03-17', '2020-03-20', '1', 2, 'Perlombaan asanka', 2, 2),
+(2, '2020-03-17', '2020-03-20', '2', 2, 'Perlombaan asanka', 2, 2),
+(3, '2020-03-17', '2020-03-20', '0055', 3, 'Bersih Bersih sekolah', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -173,12 +183,20 @@ INSERT INTO `tbl_surat_masuk` (`id_surat_masuk`, `lampiran_surat_masuk`, `alamat
 --
 
 CREATE TABLE `tbl_user` (
-  `id_user` int(11) NOT NULL,
-  `id_role` int(11) NOT NULL,
-  `nip` int(11) NOT NULL,
-  `nama` varchar(11) NOT NULL,
-  `password` varchar(11) NOT NULL
+  `id_user` int(255) NOT NULL,
+  `id_role` int(255) NOT NULL,
+  `nip` int(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`id_user`, `id_role`, `nip`, `nama`, `password`) VALUES
+(2, 2, 23495453, 'Muhammad hasyim', 'user1'),
+(3, 2, 812313321, 'Suryana Alip Geni', 'user2');
 
 --
 -- Indexes for dumped tables
@@ -190,7 +208,8 @@ CREATE TABLE `tbl_user` (
 ALTER TABLE `tbl_disposisi`
   ADD PRIMARY KEY (`id_disposisi`),
   ADD KEY `jenis_disposisi` (`id_jenis_disposisi`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_surat_masuk` (`id_surat_masuk`);
 
 --
 -- Indeks untuk tabel `tbl_jenis_disposisi`
@@ -246,7 +265,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_jenis_disposisi`
@@ -288,7 +307,7 @@ ALTER TABLE `tbl_surat_masuk`
 -- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -298,7 +317,9 @@ ALTER TABLE `tbl_user`
 -- Ketidakleluasaan untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-  ADD CONSTRAINT `tbl_disposisi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_disposisi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_disposisi_ibfk_2` FOREIGN KEY (`id_surat_masuk`) REFERENCES `tbl_surat_masuk` (`id_surat_masuk`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_disposisi_ibfk_3` FOREIGN KEY (`id_jenis_disposisi`) REFERENCES `tbl_jenis_disposisi` (`id_jenis_disposisi`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tbl_serah_terima_dokumen`
