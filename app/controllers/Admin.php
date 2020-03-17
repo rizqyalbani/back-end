@@ -27,7 +27,7 @@
             // var_dump($_POST);
             if( !empty($_POST) ){
                 if($this->model("suratMasukModel")->addSuratMasuk($_POST) > 0){
-                    // header("Location: " . BASE_URL . "Admin");
+                    header("Location: " . BASE_URL . "Admin");
                 }
             //end of if
             }
@@ -55,15 +55,28 @@
         }
 
         //nanti diisi function disposisi, itu juga baru buat view untuk disposisi
-        public function disposisi(){
+        public function disposisi($id){
 
             $data = [
-                "disposisi" => $this->model("suratKelarModel")->getDisposisiSuratKeluar()
+                "surat_masuk" => $this->model("suratMasukModel")->getSuratMasukById($id), //memanggil method di dalam model
+                "jDisposisi" => $this->model("jenisDisposisiModel")->getJenis(), //memanggil method di dalam model
+                "user"  => $this->model("User_model")->getAllUser(),
+                "process" => "admin/addDisposisi"
             ];
-
             $this->view("templates/header", $data);
             $this->view("admin/disposisi", $data);
             $this->view("templates/footer");
+        }
+
+        public function addDisposisi(){
+            if( !empty($_POST) ){
+                echo "halo";
+                if($this->model("disposisiModel")->addDisposisi($_POST) > 0){
+                    header("Location: " . BASE_URL . "Admin");
+                    echo "halo";
+                }
+            //end of if
+            }
         }
 
     }

@@ -1,6 +1,7 @@
 <h1>Hello This is admin</h1>
 <h2><?=$data['judul']?></h2>
 <!-- form -->
+<?php echo BASE_URL . $data['process'] ?>
 <form action="<?php echo BASE_URL . $data['process'] ?>" method="POST">
     <div>
         <!-- Nomor surat masuk -->
@@ -61,34 +62,10 @@
         <td><?= $srt['alamat_pengirim'] ?></td>
         <td><?= $srt['tanggal_surat_masuk'] ?></td>
         <td>
-            <!-- modal -->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDisposisi">
-                Kirim Disposisi
-            </button>
+          <a href="<?=BASE_URL?>admin/disposisi/<?=$srt['id_surat_masuk']?>">Kirim disposisi</a>
         </td>
     </tr>
     <?php endforeach ?>
 </table>
 
 <!-- kerangka modal, sengaja taro paling bawah biar ga menuhin code. laigan dipanggil pake data-target -->
-<!-- Modal -->
-<div class="modal fade" id="modalDisposisi" tabindex="-1" role="dialog" aria-labelledby="modalDisposisi" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Disposisi">Disposisi</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

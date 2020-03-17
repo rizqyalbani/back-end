@@ -2,6 +2,7 @@
     class suratMasukModel{
         private $db, $table = "tbl_surat_masuk";
 
+        //function construct database
         public function __CONSTRUCT(){
             $this->db = new Database;
         }
@@ -48,5 +49,17 @@
             return $this->db->allResult();
         // end of surat masuk function
         }
+
+        public function getSuratMasukById($id){
+            $query = ("SELECT * FROM " . $this->table . " WHERE id_surat_masuk = :id");
+            $this->db->query($query);
+            $this->db->bind("id", $id);
+            return $this->db->singleResult();
+        }
+
+        // public function getDisposisiSuratMasuk(){
+        //     $query()
+        // }
+
     }
 ?>
