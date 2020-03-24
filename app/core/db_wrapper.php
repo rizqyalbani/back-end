@@ -55,7 +55,7 @@
             $this->stmt->bindValue($param,$value,$type);
         //end of function bind
         }
-
+        
         //function execute
         public function execute(){
             $this->stmt->execute();

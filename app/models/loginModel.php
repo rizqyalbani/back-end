@@ -34,8 +34,15 @@ class loginModel
                 if(isset($password) && $password != ""){
                     if($pass == $password){
                         if($role == '1' || $role == 1){
+                            session_start();
+                            $_SESSION['username'] = $user;
+                            $_SESSION['password'] = $pass;
+                            
                             header('Location: '.BASE_URL);
                         }elseif($role == '2' || $role == 2){
+                            session_start();
+                            $_SESSION['username'] = $user;
+                            $_SESSION['password'] = $pass;
                             var_dump("DATA USER");die;
                         }
                     }else{ //end if cek password
