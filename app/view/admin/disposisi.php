@@ -1,7 +1,6 @@
 <h1>Send disposisi</h1>
-<?php echo BASE_URL . $data['process']?>
 <form action="<?php echo BASE_URL . $data['process']?>" method="POST">
-    <input value="<?php echo $data['surat_masuk']['id_surat_masuk'] ?>" id="id_surat_masuk" name="id_surat_masuk" type="text"> <br>
+    <input value="<?php echo $data['surat_masuk']['id_surat_masuk'] ?>" id="id_surat_masuk" name="id_surat_masuk" type="hidden"> <br>
 
     <label for="agenda">No Agenda</label>
     <input id="agenda" name="agenda" type="number"> <br>

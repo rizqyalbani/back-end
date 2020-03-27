@@ -9,7 +9,5 @@
 </head>
 <body>
     <ol>
-        <li><a href="<?= BASE_URL?>admin/addDataSuratMasuk">Surat Masuk</a></li>
-        <li><a href="<?= BASE_URL?>admin/addDataSuratKeluar">Surat Keluar</a></li>
-        <li><a href="<?= BASE_URL?>admin/logOut">Logout</a></li>
+        <li><a href="<?= BASE_URL?>Home/logOut">Logout</a></li>
     </ol>
