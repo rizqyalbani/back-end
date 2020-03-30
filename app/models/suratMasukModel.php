@@ -14,7 +14,7 @@
             $alamat_surat = $data['alamat_srt_msk'];
             $perihal_surat = $data['perihal_srt_msk'];
             $lampiran_surat = $data['lampiran_srt_msk'];
-            $disposisi_surat = $data['disposisi_srt_msk'];
+            $nama_instansi_surat_masuk = $data['nama_instansi_surat_masuk'];
 
             $query = "INSERT INTO $this->table
                         VALUES(
@@ -24,7 +24,7 @@
                                 :tanggal_surat_masuk,
                                 :nomor_surat_masuk,
                                 :perihal_surat_masuk,
-                                disposisi_surat_masuk
+                                :nama_instansi_surat_masuk
                                 )";
                     
             $this->db->query($query);
@@ -34,6 +34,7 @@
             $this->db->bind(':tanggal_surat_masuk', $tanggal_surat);
             $this->db->bind(':nomor_surat_masuk', $no_surat);
             $this->db->bind(':perihal_surat_masuk',$perihal_surat);
+            $this->db->bind(':nama_instansi_surat_masuk',$nama_instansi_surat_masuk);
 
             $this->db->execute();
             // penghitung apakah ada baris yang terpengahruh
@@ -57,9 +58,14 @@
             return $this->db->singleResult();
         }
 
-        // public function getDisposisiSuratMasuk(){
-        //     $query()
-        // }
+        //delete surat masuk
+        public function deleteSuratMasuk($id){
+            $delete = "DELETE FROM $this->table WHERE id_surat_masuk = :id";
+            $this->db->query($delete);
+            $this->db->bind("id", $id);
+            $this->db->execute();
+            return $this->db->rowCount();
+        }
 
     }
 ?>

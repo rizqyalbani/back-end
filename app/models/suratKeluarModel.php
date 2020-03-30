@@ -16,7 +16,7 @@
             $alamat_surat = $data['alamat_srt_klr'];
             $perihal_surat = $data['perihal_srt_klr'];
             $lampiran_surat = $data['lampiran_srt_klr'];
-            $disposisi_surat = $data['disposisi_srt_klr'];
+            $nama_instansi_surat_keluar = $data['nama_instansi_surat_keluar'];
 
             $query = "INSERT INTO tbl_surat_keluar
                         VALUES(
@@ -26,7 +26,7 @@
                                 :tanggal_surat_keluar,
                                 :nomor_surat_keluar,
                                 :perihal_surat_keluar,
-                                disposisi_surat_keluar
+                                :nama_instansi_surat_keluar
                                 )";
                     
             $this->db->query($query);
@@ -36,6 +36,7 @@
             $this->db->bind(':tanggal_surat_keluar', $data['tgl_srt_klr']);
             $this->db->bind(':nomor_surat_keluar', $data['nmr_srt_klr']);
             $this->db->bind(':perihal_surat_keluar', $data['perihal_srt_klr']);
+            $this->db->bind(':nama_instansi_surat_keluar', $data['nama_instansi_surat_keluar']);
 
             $this->db->execute();
             // dihitung apakah ada baris di database yang terpengaruh
@@ -49,5 +50,14 @@
         //end of getAllSuratKeluar
         }
     // end of class model
+    
+    // untuk delete
+    public function deleteSuratKeluar($id){
+        $delete = "DELETE FROM $this->table WHERE id_surat_keluar = :id";
+        $this->db->query($delete);
+        $this->db->bind("id", $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
     }
 ?>

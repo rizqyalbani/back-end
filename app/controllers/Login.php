@@ -2,7 +2,7 @@
 
 class Login extends mainController
 {
-    public function login()
+    public function index()
     {
         if(!isset($_POST['submit']))
         {

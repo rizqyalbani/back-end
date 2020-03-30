@@ -1,7 +1,7 @@
 <h1>Hello This is admin</h1>
 <h2><?=$data['judul']?></h2>
 <!-- form -->
-<?php echo BASE_URL . $data['process'] ?>
+
 <form action="<?php echo BASE_URL . $data['process'] ?>" method="POST">
     <div>
         <!-- Nomor surat masuk -->
@@ -32,12 +32,14 @@
         <label for="lampiran_srt_msk">Lampiran Surat Masuk</label>
         <input type="text" id="lampiran_srt_msk" name="lampiran_srt_msk" type="text">
     </div>
-    <br>
-    <!-- disposisi surat msk -->
+
     <div>
-        <label for="disposisi_srt_msk">Disposisi Surat Masuk</label>
-        <input type="text" id="disposisi_srt_msk" name="disposisi_srt_msk" type="text">
+        <label for="lampiran_srt_msk">Nama Instansi</label>
+        <input type="text" id="nama_instansi_surat_masuk" name="nama_instansi_surat_masuk" type="text">
     </div>
+
+    <br>
+    
     <div>
         <button type="submit" name="submit" >Send data</button>
     </div>
@@ -50,7 +52,9 @@
         <th>Lampiran Surat Keluar</th>
         <th>Alamat Tujuan Surat Keluar</th>
         <th>Tanggal Surat Keluar</th>
-        <th>Disposisi Surat Keluar</th>
+        <th>Nama Instansi</th>
+        <th>Disposisi</th>
+        <th>Aksi</th>
     </tr>
     <?php
         foreach($data['surat'] as $srt):
@@ -61,8 +65,12 @@
         <td><?= $srt['lampiran_surat_masuk'] ?></td>
         <td><?= $srt['alamat_pengirim'] ?></td>
         <td><?= $srt['tanggal_surat_masuk'] ?></td>
+        <td><?= $srt['nama_instansi_surat_masuk'] ?></td>
         <td>
-          <a href="<?=BASE_URL?>admin/disposisi/<?=$srt['id_surat_masuk']?>">Kirim disposisi</a>
+          <a href="<?=BASE_URL?>admin/lihatDisposisi/<?=$srt['id_surat_masuk']?>">Kirim/Lihat</a>
+        </td>
+        <td>
+          <a onclick="confirm('Are you sure want to delete this?')" href="<?=BASE_URL?>admin/deleteSuratMasuk/<?=$srt['id_surat_masuk']?>">Delete</a>
         </td>
     </tr>
     <?php endforeach ?>
