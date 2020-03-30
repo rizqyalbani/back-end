@@ -2,7 +2,7 @@
 
 class Register extends mainController
 {
-    public function Register()
+    public function index()
     {
         $data['title'] = 'Register';
         $this->view("templates/header",$data);

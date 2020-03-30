@@ -1,6 +1,6 @@
 <?php
 
-class regisaterModel
+class registerModel
 {
     private $tb = "tbl_user",
     		$db,

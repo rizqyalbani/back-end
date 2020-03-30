@@ -155,7 +155,16 @@
                 $this->view("admin/disposisi", $data);
                 $this->view("templates/footer");
             }
-
+        // end of lihat disposisi
+        }
+        
+        public function register()
+        {
+            $data['title'] = 'Register Admin';
+            $this->view("templates/header",$data);
+            $this->view("Register/registerAdmin");
+            $this->view("templates/footer");
+          
         }
 
     }
