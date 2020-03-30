@@ -1,7 +1,7 @@
 <?php
     class disposisiModel{
         
-        private $db, $table = "tbl_disposisi";
+        private $db, $table = " tbl_disposisi ";
 
         //function construct database
         public function __CONSTRUCT(){
