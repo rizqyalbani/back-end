@@ -157,12 +157,34 @@
             }
         // end of lihat disposisi
         }
+
+        public function register(){
+            if ($_POST) {
+                $add = $this->model('registerModel')->register($_POST);
+		        if ($add > 0) {
+                    header('Location: '.BASE_URL.'admin/showRegister');
+                exit();
+                }
+                else{
+                    header('Location: '.BASE_URL.'register/Register');
+                exit(); 
+                }
+            }
+            else{
+                $data['title'] = 'Register';
+                $this->view("templates/header",$data);
+                $this->view("admin/registerAdmin");
+                $this->view("templates/footer");
+            }
+        }
         
-        public function register()
-        {
+        public function showRegister(){
+
+            $data['admin'] = $this->model('registerModel')->getRegister();
+
             $data['title'] = 'Register Admin';
             $this->view("templates/header",$data);
-            $this->view("Register/registerAdmin");
+            $this->view("admin/showRegisterAdmin", $data);
             $this->view("templates/footer");
           
         }
