@@ -186,7 +186,43 @@
             $this->view("templates/header",$data);
             $this->view("admin/showRegisterAdmin", $data);
             $this->view("templates/footer");
-          
+        }
+
+        public function deleteAdmin($id){
+            $data['title'] = 'Delete Admin';
+
+            if ($this->model('registerModel')->deleteRegister($id) > 0) {
+
+                $this->showRegister();
+
+            }
+        }
+
+        public function updateAdmin($id){
+            
+            // if ($this->model('registerModel')->updateRegister($id) > 0) {
+            //     $this->showRegister();
+
+            $data['admin']  = $this->model('registerModel')->getRegister();
+
+            $data['title'] = "update Admin";
+            $this->view("templates/header",$data);
+            $this->view("admin/updateAdmin", $data);
+            $this->view("templates/footer");
+
+            }
+
+        public function processUpdate(){
+            if(isset($_POST)){
+                if ($this->model("registerModel")->updateRegister() > 0 ) {
+                    $data['admin']  = $this->model('registerModel')->updateRegister($_POST);
+
+                    $data['title'] = "update Admin";
+                    $this->view("templates/header",$data);
+                    $this->view("admin/updateAdmin", $data);
+                    $this->view("templates/footer");
+                }
+            }
         }
 
     }

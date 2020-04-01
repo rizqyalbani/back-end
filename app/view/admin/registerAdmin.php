@@ -8,7 +8,7 @@
     <label for=""> nip</label>
     <input type="number" name="nip">
 
-    <input type="text" value ="1" name="id_role">
+    <input type="hidden" value ="1" name="id_role">
 
     <button type="submit" name="submit">Daftar </button>
   </form>
