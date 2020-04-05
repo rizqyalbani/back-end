@@ -14,8 +14,14 @@
             return $this->db->allResult();
         }
         public function addDisposisi(){
-            // print_r($_POST);
+            print_r($_POST);
             //belom buat tampilin user
+            if(isset($_POST['submit'])){
+                $d = time()+21600;//3600 = 60 menit, 21600 / 3600 = dihitung sendiri ya
+                // echo date("H:i:s", $d). " "; 
+                $datePost = date('Y-m-d H:i:s', $d);
+            }
+
             $query = "INSERT INTO $this->table 
                     VALUES(
                         '',
@@ -25,7 +31,8 @@
                         :id_jenis_disposisi,
                         :instruksi,
                         :id_user,
-                        :id_surat_masuk
+                        :id_surat_masuk,
+                        :postedTime
                     )";
             //buat bindingnya
             $this->db->query($query);
@@ -36,6 +43,7 @@
             $this->db->bind(':instruksi', $_POST['instruksi'] );
             $this->db->bind(':id_user', $_POST['user'] );
             $this->db->bind(':id_surat_masuk', $_POST['id_surat_masuk'] );
+            $this->db->bind(':postedTime', $datePost );
             $this->db->execute();
             return $this->db->rowCount();
         }
@@ -54,17 +62,30 @@
         public function getDisposisi($id){
             //manggil disposisi berdasarkan user yang bersangkutan
             $binded = $id ;
+            //print_r($id);
             // ambil disposisi yang berkaitan dengan user yang sudah login aja
             $this->db->query("SELECT * FROM $this->table WHERE id_surat_masuk = :id"); //apa ga gila pake function tuh
             $this->db->bind('id', $binded);
             return $this->db->allResult();
         }
+        public function getDisposisiIdj($id){
+            print_r($id);
+            
+            //manggil disposisi berdasarkan user yang bersangkutan
+            $binded = $id ;
+            // print_r($id);
+            // ambil disposisi yang berkaitan dengan user yang sudah login aja
+            $this->db->query("SELECT * FROM $this->table WHERE id_surat_masuk = :id"); //apa ga gila pake function tuh
+            $this->db->bind('id', $binded);
+            return $this->db->singleResult();
+        }
 
         public function getJenisDisposisis($data){
+            // print_r($data);
             $user = "SELECT * FROM tbl_jenis_disposisi WHERE id_jenis_disposisi =  :id ";
             // echo $user;
             $this->db->query($user);
-            $this->db->bind('id', $data[0]['id_jenis_disposisi']);
+            $this->db->bind('id', $data);
             $a = $this->db->singleResult();
             return $a['jenis_disposisi'];
         }

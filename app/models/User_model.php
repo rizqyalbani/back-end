@@ -37,7 +37,7 @@ class User_model{
         $this->db->query($user);
         $this->db->bind('id', $data['id_jenis_disposisi']);
         $a = $this->db->singleResult();
-        print_r($a['jenis_disposisi']) ;
+        return($a['jenis_disposisi']) ;
     }
 
     // untuk memunculkan list user di admin, sorry pinjem model ve :D

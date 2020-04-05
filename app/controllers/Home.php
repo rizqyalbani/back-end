@@ -24,10 +24,12 @@ class Home extends mainController{
         session_start();
         $data['title'] = 'Home';
         $data['user'] = $this->model('User_model')->getAllDisposisi();
+        // deklarasiin variable untuk jadi sebuah array
         $id_jenis_disposisi = [];
         $suratAsal = [];
         $perihal_surat_masuk = [];
         $listUser = [];
+        
         foreach ($data['user'] as $a) {
             $id_jenis_disposisi[] = $this->model('user_model')->getJenisDisposisi($a);
             $suratAsal[] = $this->model('user_model')->getDataSurat($a);
@@ -38,6 +40,7 @@ class Home extends mainController{
         $data['suratAsal'] = $suratAsal;
         $data['jenis_disposisi'] =$id_jenis_disposisi;
         $data['listUser'] =$listUser;
+        // print_r( $this->model('user_model')->getJenisDisposisi($a));
         // $data['test'] = $this->model('User_model')->getUser();
         $this->view('templates/headerUser', $data);
         $this->view('user/index', $data);

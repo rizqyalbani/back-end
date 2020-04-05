@@ -42,7 +42,6 @@ class registerModel
 
     public function updateRegister(){
         // query buat get password
-
         $id = $_POST['id'];
         // $query = "SELECT * FROM $this->tb WHERE id_user = :id";
         // $this->db->query($query);
@@ -60,6 +59,7 @@ class registerModel
             return $this->db->rowCount();
         }
         else{
+
             $query = "UPDATE $this->tb SET nip = :nip, nama = :nama, password = :pass WHERE id_user = '$id' ";
             $this->db->query($query);
             $this->db->bind('nip', $_POST['nip']);

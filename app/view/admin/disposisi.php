@@ -39,7 +39,7 @@
             endforeach;
         ?>
     </select> <br>
-    <button type="submit">Kirim Disposisi</button>
+    <button name="submit" type="submit">Kirim Disposisi</button>
 </form>
 <!-- <option value=""></option> -->
         <?php

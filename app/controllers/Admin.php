@@ -127,8 +127,8 @@
                     $user = [];
                     foreach ($data['disposisi'] as $disposisi) {
                         $asal[] =  $this->model('disposisiModel')->getAsalDisposisis($this->model('disposisiModel')->getDisposisi($id));
-                        $jenis[] = $this->model('disposisiModel')->getJenisDisposisis($this->model('disposisiModel')->getDisposisi($id));
                         $user[] = $this->model('disposisiModel')->getUser($disposisi['id_user']);
+                        $jenis[] = $this->model('disposisiModel')->getJenisDisposisis($disposisi['id_jenis_disposisi']);
                     }  
                     $data["asal"] = $asal;
                     $data["jenis"] = $jenis;
@@ -188,6 +188,17 @@
             $this->view("templates/footer");
         }
 
+        //jika gagal update
+        public function showFailedUpdateRegister($fail){
+
+            $data['admin'] = $this->model('registerModel')->getRegister();
+            $data['failed'] = $fail;
+            $data['title'] = 'Register Admin';
+            $this->view("templates/header",$data);
+            $this->view("admin/showRegisterAdmin", $data);
+            $this->view("templates/footer");
+        }
+
         public function deleteAdmin($id){
             $data['title'] = 'Delete Admin';
 
@@ -215,12 +226,11 @@
         public function processUpdate(){
             if(isset($_POST)){
                 if ($this->model("registerModel")->updateRegister() > 0 ) {
-                    $data['admin']  = $this->model('registerModel')->updateRegister($_POST);
-
-                    $data['title'] = "update Admin";
-                    $this->view("templates/header",$data);
-                    $this->view("admin/updateAdmin", $data);
-                    $this->view("templates/footer");
+                    $this->showRegister();
+                }
+                else{
+                    $notif = "<script>alert('failed to update')</script>";
+                    $this->showFailedUpdateRegister($notif);
                 }
             }
         }

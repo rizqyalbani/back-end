@@ -1,4 +1,8 @@
-
+<?php
+  if (isset($data['failed'])) {
+    echo $data['failed'];
+  }
+?>
     <h1>List Admin</h1>
 
     <p>
