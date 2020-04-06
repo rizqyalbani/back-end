@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Apr 2020 pada 02.12
+-- Waktu pembuatan: 06 Apr 2020 pada 05.55
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -36,15 +36,19 @@ CREATE TABLE `tbl_disposisi` (
   `id_jenis_disposisi` int(11) NOT NULL,
   `instruksi` varchar(225) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_surat_masuk` int(11) NOT NULL
+  `id_status` int(11) NOT NULL,
+  `id_surat_masuk` int(11) NOT NULL,
+  `postedTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_disposisi`
 --
 
-INSERT INTO `tbl_disposisi` (`id_disposisi`, `tanggal`, `tanggal_penyelesaian`, `no_agenda`, `id_jenis_disposisi`, `instruksi`, `id_user`, `id_surat_masuk`) VALUES
-(11, '2020-03-31', '2020-04-01', '123123', 2, 'Perlombaan asanka', 12, 12);
+INSERT INTO `tbl_disposisi` (`id_disposisi`, `tanggal`, `tanggal_penyelesaian`, `no_agenda`, `id_jenis_disposisi`, `instruksi`, `id_user`, `id_status`, `id_surat_masuk`, `postedTime`) VALUES
+(19, '2020-04-01', '2020-04-03', '0001', 2, 'penandatanganan', 12, 2, 12, '2020-04-01 17:28:05'),
+(20, '2020-04-09', '2020-04-16', '0002', 3, 'Dinas ke Asanka', 12, 2, 12, '2020-04-01 17:28:26'),
+(21, '2020-04-29', '2020-04-30', '0003', 1, 'ke pemerintahan', 20, 1, 13, '2020-04-01 17:28:48');
 
 -- --------------------------------------------------------
 
@@ -114,8 +118,8 @@ CREATE TABLE `tbl_status` (
 --
 
 INSERT INTO `tbl_status` (`id_status`, `status`) VALUES
-(1, 'diterima'),
-(2, 'belum diterima');
+(1, 'belum diterima'),
+(2, 'diterima');
 
 -- --------------------------------------------------------
 
@@ -184,7 +188,9 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`id_user`, `id_role`, `nip`, `nama`, `password`) VALUES
 (12, 2, 13123, 'andrea', 'user1'),
-(13, 1, 34234234, 'admin', 'admin');
+(13, 1, 34234234, 'admin', 'admin'),
+(20, 2, 12345, 'ripanjul', 'sanitizer'),
+(22, 1, 2312312, 'admin2', 'admin2');
 
 --
 -- Indexes for dumped tables
@@ -197,7 +203,8 @@ ALTER TABLE `tbl_disposisi`
   ADD PRIMARY KEY (`id_disposisi`),
   ADD KEY `jenis_disposisi` (`id_jenis_disposisi`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_surat_masuk` (`id_surat_masuk`);
+  ADD KEY `id_surat_masuk` (`id_surat_masuk`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indeks untuk tabel `tbl_jenis_disposisi`
@@ -253,7 +260,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_jenis_disposisi`
@@ -265,7 +272,7 @@ ALTER TABLE `tbl_jenis_disposisi`
 -- AUTO_INCREMENT untuk tabel `tbl_role`
 --
 ALTER TABLE `tbl_role`
-  MODIFY `id_role` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_role` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_serah_terima_dokumen`
@@ -295,7 +302,7 @@ ALTER TABLE `tbl_surat_masuk`
 -- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -305,15 +312,15 @@ ALTER TABLE `tbl_user`
 -- Ketidakleluasaan untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-  ADD CONSTRAINT `tbl_disposisi_ibfk_2` FOREIGN KEY (`id_surat_masuk`) REFERENCES `tbl_surat_masuk` (`id_surat_masuk`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_disposisi_ibfk_3` FOREIGN KEY (`id_jenis_disposisi`) REFERENCES `tbl_jenis_disposisi` (`id_jenis_disposisi`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_disposisi_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_disposisi_ibfk_2` FOREIGN KEY (`id_surat_masuk`) REFERENCES `tbl_surat_masuk` (`id_surat_masuk`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_disposisi_ibfk_3` FOREIGN KEY (`id_jenis_disposisi`) REFERENCES `tbl_jenis_disposisi` (`id_jenis_disposisi`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_disposisi_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_disposisi_ibfk_5` FOREIGN KEY (`id_status`) REFERENCES `tbl_status` (`id_status`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tbl_serah_terima_dokumen`
 --
 ALTER TABLE `tbl_serah_terima_dokumen`
-  ADD CONSTRAINT `tbl_serah_terima_dokumen_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `tbl_status` (`id_status`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_serah_terima_dokumen_ibfk_3` FOREIGN KEY (`id_surat_masuk`) REFERENCES `tbl_surat_masuk` (`id_surat_masuk`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --

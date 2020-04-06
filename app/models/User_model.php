@@ -55,6 +55,30 @@ class User_model{
         $a = $this->db->singleResult();
         return $a;
     }
+
+    public function getStatus($id){
+        $getStatus = "SELECT * FROM tbl_status WHERE id_status = :id";
+        $this->db->query($getStatus);
+        $this->db->bind('id', $id);
+        return $this->db->singleResult();
+    }
+
+    public function allStatus(){
+        $getStatus = "SELECT * FROM tbl_status";
+        $this->db->query($getStatus);
+        $this->db->execute();
+        return $this->db->allResult();
+    }
+
+    public function updateStatus($status, $id_disposisi){
+
+        $query = "UPDATE $this->table SET id_status = :id_status WHERE id_disposisi = :id_disposisi ";
+        $this->db->query($query);
+        $this->db->bind('id_status', $status);
+        $this->db->bind('id_disposisi', $id_disposisi);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
     
 }
 

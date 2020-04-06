@@ -31,6 +31,7 @@
                         :id_jenis_disposisi,
                         :instruksi,
                         :id_user,
+                        :id_status,
                         :id_surat_masuk,
                         :postedTime
                     )";
@@ -42,6 +43,7 @@
             $this->db->bind(':id_jenis_disposisi', $_POST['jenis_disposisi'] );
             $this->db->bind(':instruksi', $_POST['instruksi'] );
             $this->db->bind(':id_user', $_POST['user'] );
+            $this->db->bind(':id_status', 1 );
             $this->db->bind(':id_surat_masuk', $_POST['id_surat_masuk'] );
             $this->db->bind(':postedTime', $datePost );
             $this->db->execute();
@@ -112,6 +114,13 @@
             $this->db->bind("id", $id);
             $this->db->execute();
             return $this->db->rowCount();
+        }
+
+        public function getStatus($id){
+            $getStatus = "SELECT status FROM tbl_status WHERE id_status = :id";
+            $this->db->query($getStatus);
+            $this->db->bind('id', $id);
+            return $this->db->singleResult()['status'];
         }
 
     }

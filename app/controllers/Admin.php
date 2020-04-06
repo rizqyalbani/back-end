@@ -91,7 +91,6 @@
         public function addDisposisi(){
             $this->logCheck();
             if( !empty($_POST) ){
-                echo "halo";
                 if($this->model("disposisiModel")->addDisposisi($_POST) > 0){
                     header("Location: " . BASE_URL . "Admin/addDataSuratMasuk");
                 }
@@ -125,16 +124,20 @@
                     $asal = [];
                     $jenis = [];
                     $user = [];
+                    $status = [];
                     foreach ($data['disposisi'] as $disposisi) {
                         $asal[] =  $this->model('disposisiModel')->getAsalDisposisis($this->model('disposisiModel')->getDisposisi($id));
                         $user[] = $this->model('disposisiModel')->getUser($disposisi['id_user']);
                         $jenis[] = $this->model('disposisiModel')->getJenisDisposisis($disposisi['id_jenis_disposisi']);
+                        $status[] = $this->model('disposisiModel')->getStatus($disposisi['id_status']);
                     }  
                     $data["asal"] = $asal;
                     $data["jenis"] = $jenis;
                     $data["title"] = "Disposisi";
                     $data["id_surat"] = $id;
                     $data["user"] = $user;
+                    $data['status'] = $status;
+                    // print_r($status);                                  
                     // var_dump($data['disposisi']);
 
                     $this->view('templates/header', $data);

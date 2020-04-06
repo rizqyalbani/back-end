@@ -12,7 +12,8 @@
             <li>Jenis Disposisi : <?=$data['jenis'][$a] ?></li>
             <li>Surat dari Instansi : <?=$data['asal'][$a] ?></li>
             <li>User : <?=$data['user'][$a]['nama'] ?></li>
-            <li>Status Surat : Belum Diterima</li>
+            <li>Dikirim pada : <?=$data['disposisi'][$a]['postedTime'] ?></li>
+            <li>Status Surat : <?=$data['status'][$a] ?> </li>
             <li><a href="<?=BASE_URL?>Admin/deleteDisposisi/<?=$disposisi['id_disposisi']?>">Hapus Disposisi</a></li>
             
         </ul>

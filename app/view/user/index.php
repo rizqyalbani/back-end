@@ -20,11 +20,14 @@
             ?>
         </li>
         <li>
-            Status Diterima :
-            <select name="" id="">
-                <option value="">diterima</option>
-                <option value="">belum diterima</option>
-            </select>
+            <form action="<?=BASE_URL?>Home/updateStatus/<?=$user['id_disposisi']?>" method="POST">
+                Status Diterima :
+                <select name="status">
+                    <option <?php echo $data['status'][$a]['id_status'] == 1 ? '' : 'selected' ?> value= "1">Belum Diterima </option>
+                    <option <?php echo $data['status'][$a]['id_status'] == 1 ? '' : 'selected' ?> value="2">Diterima </option>
+                </select>
+                <button onclick="alert('You have Changed the status of your Disposisi')" type="submit" name="submit">Submit</button>
+            </form>
         </li>
     </ul>
     <?php $a++?>
