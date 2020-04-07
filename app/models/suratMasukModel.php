@@ -67,5 +67,35 @@
             return $this->db->rowCount();
         }
 
+        //update surat masuk masih belom lengkap
+        public function updatedata($id){
+            $id_surat_masuk = $this->input->post('id_surat_masuk');
+            $lampiran_surat_masuk = $this->input->post('lampiran_surat_masuk');
+            $alamat_pengirim = $this->input->post('alamat_pengirim');
+            $tanggal_surat_masuk = $this->input->post('tanggal_surat_masuk');
+            $nomor_surat_masuk = $this->input->post('nomor_surat_masuk');
+            $perihal_surat_masuk = $this->input->post('perihal_surat_masuk');
+            $nama_instansi_surat_masuk = $this->input->post('nama_instansi_surat_masuk');
+            $data = array(
+                    'id_surat_masuk'=>$id_surat_masuk,
+                    'lampiran_surat_masuk'=>$lampiran_surat_masuk,
+                    'alamat_pengirim'=>$alamat_pengirim,
+                    'tanggal_surat_masuk'=>$tanggal_surat_masuk,
+                    'nomor_surat_masuk'=>$nomor_surat_masuk,
+                    'perihal_surat_masuk'=>$perihal_surat_masuk,
+                    'nama_instansi_surat_masuk'=>$nama_instansi_surat_masuk
+                    );
+            // $this->db->where(array('no_bukti'=>$no_bukti,
+            //                         'tgl_entry'=>$tgl_entry));
+            // $this->db->update('entry_buku_kas',$data);
+        }
+     
+        function filterdata($no_bukti,$tgl_entry){
+            return $this->db->get_where('entry_buku_kas',
+                              array('no_bukti'=>$no_bukti,
+                                    'tgl_entry'=>$tgl_entry))->row();
+
+        }                       
+
     }
 ?>
