@@ -238,6 +238,7 @@
             }
         }
 
+<<<<<<< HEAD
         //Update surat masuk belom lengkaps
         public function updateSuratMasuk($id){
             
@@ -265,6 +266,16 @@
             }
         }
 
+=======
+        public function editDisposisi($id){
+            $data['admin']  = $this->model('disposisiModel')->getEditDisposisi();
+
+            $data['title'] = "update disposisi";
+            $this->view("templates/header",$data);
+            $this->view("admin/updateAdmin", $data);
+            $this->view("templates/footer");
+        }
+>>>>>>> 2df8cb341ea80a759736f1a48233bc9910122e5c
     }
     
 ?>

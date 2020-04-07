@@ -1,4 +1,5 @@
-<h1>Lihat Disposisi</h1>
+<h2>edit disposisi</h2>
+
     <?php
         $a = 0;
         foreach ($data['disposisi'] as $disposisi) : 
@@ -14,7 +15,7 @@
             <li>User : <?=$data['user'][$a]['nama'] ?></li>
             <li>Dikirim pada : <?=$data['disposisi'][$a]['postedTime'] ?></li>
             <li>Status Surat : <?=$data['status'][$a] ?> </li>
-            <li><a href="<?=BASE_URL?>Admin/deleteDisposisi/<?=$disposisi['id_disposisi']?>">Hapus Disposisi</a></li>
+            <li><a href="<?=BASE_URL?>Admin/editDisposisi/<?=$disposisi['id_disposisi']?>">cancel</a></li>
             <li><a href="<?=BASE_URL?>Admin/editDisposisi/<?=$disposisi['id_disposisi']?>">Edit</a></li>
             
         </ul>
@@ -23,4 +24,3 @@
         $a++;
         endforeach;
     ?>
-    <a href="<?= BASE_URL?>admin/disposisi/<?= $data['id_surat']?>">Tambah Disposisi</a>
