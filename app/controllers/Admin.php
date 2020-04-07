@@ -283,35 +283,6 @@
             }
         }
 
-<<<<<<< HEAD
-        //Update surat masuk belom lengkaps
-        public function updateSuratMasuk($id){
-            
-            // if ($this->model('registerModel')->updateRegister($id) > 0) {
-            //     $this->showRegister();
-
-            $data['admin']  = $this->model('suratMasukModel')->getRegister();
-
-            $data['title'] = "update SuratMasuk";
-            $this->view("templates/header",$data);
-            $this->view("admin/updateSuratMasuk", $data);
-            $this->view("templates/footer");
-
-            }
-
-        public function prosesUpdate(){
-            if(isset($_POST)){
-                if ($this->model("suratMasukModel")->updateSuratMasuk() > 0 ) {
-                    $this->showUpdateSuratMasuk();
-                }
-                else{
-                    $notif = "<script>alert('failed to update')</script>";
-                    $this->showFailedUpdateSuratMasuk($notif);
-                }
-            }
-        }
-
-=======
         public function editDisposisi($id){
             $data['admin']  = $this->model('disposisiModel')->getEditDisposisi();
 
@@ -320,7 +291,6 @@
             $this->view("admin/updateAdmin", $data);
             $this->view("templates/footer");
         }
->>>>>>> 2df8cb341ea80a759736f1a48233bc9910122e5c
     }
     
 ?>
