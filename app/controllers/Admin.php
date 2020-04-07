@@ -238,5 +238,33 @@
             }
         }
 
+        //Update surat masuk belom lengkaps
+        public function updateSuratMasuk($id){
+            
+            // if ($this->model('registerModel')->updateRegister($id) > 0) {
+            //     $this->showRegister();
+
+            $data['admin']  = $this->model('suratMasukModel')->getRegister();
+
+            $data['title'] = "update SuratMasuk";
+            $this->view("templates/header",$data);
+            $this->view("admin/updateSuratMasuk", $data);
+            $this->view("templates/footer");
+
+            }
+
+        public function prosesUpdate(){
+            if(isset($_POST)){
+                if ($this->model("suratMasukModel")->updateSuratMasuk() > 0 ) {
+                    $this->showUpdateSuratMasuk();
+                }
+                else{
+                    $notif = "<script>alert('failed to update')</script>";
+                    $this->showFailedUpdateSuratMasuk($notif);
+                }
+            }
+        }
+
     }
+    
 ?>

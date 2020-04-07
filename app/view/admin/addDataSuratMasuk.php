@@ -70,7 +70,9 @@
           <a href="<?=BASE_URL?>admin/lihatDisposisi/<?=$srt['id_surat_masuk']?>">Kirim/Lihat</a>
         </td>
         <td>
+         
           <a onclick="confirm('Are you sure want to delete this?')" href="<?=BASE_URL?>admin/deleteSuratMasuk/<?=$srt['id_surat_masuk']?>">Delete</a>
+
         </td>
     </tr>
     <?php endforeach ?>
