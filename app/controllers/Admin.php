@@ -283,5 +283,13 @@
             }
         }
 
+        public function editDisposisi($id){
+            $data['admin']  = $this->model('disposisiModel')->getEditDisposisi();
+
+            $data['title'] = "update disposisi";
+            $this->view("templates/header",$data);
+            $this->view("admin/updateAdmin", $data);
+            $this->view("templates/footer");
+        }
     }
 ?>
