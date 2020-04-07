@@ -52,12 +52,21 @@
     // end of class model
     
     // untuk delete
-    public function deleteSuratKeluar($id){
-        $delete = "DELETE FROM $this->table WHERE id_surat_keluar = :id";
-        $this->db->query($delete);
+        public function deleteSuratKeluar($id){
+            $delete = "DELETE FROM $this->table WHERE id_surat_keluar = :id";
+            $this->db->query($delete);
+            $this->db->bind("id", $id);
+            $this->db->execute();
+            return $this->db->rowCount();
+        }
+    
+    // get surat keluar by id nya 
+    public function getSuratKeluarById($id){
+        $query = ("SELECT * FROM " . $this->table . " WHERE id_surat_keluar = :id");
+        $this->db->query($query);
         $this->db->bind("id", $id);
-        $this->db->execute();
-        return $this->db->rowCount();
+        return $this->db->singleResult();
     }
+    
     }
 ?>

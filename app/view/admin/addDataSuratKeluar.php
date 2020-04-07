@@ -55,7 +55,8 @@
         <th>Alamat Tujuan Surat Keluar</th>
         <th>Tanggal Surat Keluar</th>
         <th>Tujuan Instansi</th>
-        <th>Action</th>
+        <th>Disposisi</th>
+        <th>Aksi</th>
     </tr>
     <?php
         foreach($data['surat'] as $srt):
@@ -67,6 +68,9 @@
         <td><?= $srt['alamat_tujuan'] ?></td>
         <td><?= $srt['tanggal_surat_keluar'] ?></td>
         <td><?= $srt['nama_instansi_surat_keluar'] ?></td>
+        <td>
+            <a href="<?= BASE_URL?>admin/disposisiKeluar/<?php echo $srt['id_surat_keluar'] ?>">Kirim / Lihat</a>
+        </td>
         <td>
             <a href="<?= BASE_URL?>admin/deleteSuratKeluar/<?php echo $srt['id_surat_keluar'] ?>">Delete</a>
         </td>

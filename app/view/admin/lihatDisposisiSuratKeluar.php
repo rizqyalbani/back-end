@@ -1,15 +1,15 @@
+<!-- PROTOTYPE  -->
 <h1>Lihat Disposisi</h1>
     <?php
-        // print_r($data['disposisi']);
         $a = 0;
         foreach ($data['disposisi'] as $disposisi) : 
      ?>
         <ul>
-            <li>Tanggal : <?=$data['disposisi'][$a]['tanggal'] ?></li>
-            <li>Tanggal penyelesaian : <?=$data['disposisi'][$a]['tanggal_penyelesaian'] ?></li>
-            <li>No agenda : <?=$data['disposisi'][$a]['no_agenda'] ?></li>
-            <li>perihal : <?=$data['disposisi'][$a]['no_agenda'] ?></li>
-            <li>instruksi : <?=$data['disposisi'][$a]['instruksi'] ?></li>
+            <li>Tanggal : <?=$data['disposisi'][0]['tanggal'] ?></li>
+            <li>Tanggal penyelesaian : <?=$data['disposisi'][0]['tanggal_penyelesaian'] ?></li>
+            <li>No agenda : <?=$data['disposisi'][0]['no_agenda'] ?></li>
+            <li>perihal : <?=$data['disposisi'][0]['no_agenda'] ?></li>
+            <li>instruksi : <?=$data['disposisi'][0]['instruksi'] ?></li>
             <li>Jenis Disposisi : <?=$data['jenis'][$a] ?></li>
             <li>Surat dari Instansi : <?=$data['asal'][$a] ?></li>
             <li>User : <?=$data['user'][$a]['nama'] ?></li>

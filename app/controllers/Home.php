@@ -30,6 +30,7 @@ class Home extends mainController{
         $suratAsal = [];
         $perihal_surat_masuk = [];
         $listUser = [];
+        $jenisSurat = [];
         
         foreach ($data['user'] as $a) {
             $id_jenis_disposisi[] = $this->model('user_model')->getJenisDisposisi($a);
@@ -37,6 +38,7 @@ class Home extends mainController{
             $perihal_surat_masuk[] = $this->model('user_model')->getDataSurat($a);
             $listUser[] = $this->model('user_model')->getUser($a);
             $status[] = $this->model('user_model')->getStatus($a['id_status']);
+            $jenisSurat[] = $this->model('user_model')->getJenisSurat($a['id_jenis_surat']);
             // print_r($a['id_status']);
             // $statusUser[] = $this->model('user_model')->getStatus($a['id_s'])
         }
@@ -45,6 +47,7 @@ class Home extends mainController{
         $data['suratAsal'] = $suratAsal;
         $data['jenis_disposisi'] =$id_jenis_disposisi;
         $data['listUser'] =$listUser;
+        $data['jenisSurat'] = $jenisSurat;
         // $data['test'] = $this->model('User_model')->getUser();
         $this->view('templates/headerUser', $data);
         $this->view('user/index', $data);

@@ -75,6 +75,51 @@
         //end of addDataSuratKeluar
         }
 
+        // function buat show disposisi
+        public function lihatDisposisiSuratKeluar($id){
+            if ($this->model('disposisiSuratKeluarModel')->getValidateDisposisi($id) > 0) {
+
+                $data['disposisi'] = $this->model('disposisiModel')->getDisposisi($id);
+                // deklarasi array untuk menampung data
+                $asal = [];
+                $jenis = [];
+                $user = [];
+                $status = [];
+                foreach ($data['disposisi'] as $disposisi) {
+                    $asal[] =  $this->model('disposisiModel')->getAsalDisposisis($this->model('disposisiModel')->getDisposisi($id));
+                    $user[] = $this->model('disposisiModel')->getUser($disposisi['id_user']);
+                    $jenis[] = $this->model('disposisiModel')->getJenisDisposisis($disposisi['id_jenis_disposisi']);
+                    $status[] = $this->model('disposisiModel')->getStatus($disposisi['id_status']);
+                }  
+                $data["asal"] = $asal;
+                $data["jenis"] = $jenis;
+                $data["title"] = "Disposisi";
+                $data["id_surat"] = $id;
+                $data["user"] = $user;
+                $data['status'] = $status;
+                // print_r($status);                                  
+                // var_dump($data['disposisi']);
+
+                $this->view('templates/header', $data);
+                $this->view('admin/lihatDisposisi',$data);
+                $this->view('templates/footer', $data);
+        }
+
+        else{
+            $this->logCheck();
+            $data = [
+                "surat_masuk" => $this->model("suratMasukModel")->getSuratMasukById($id), //memanggil method di dalam model
+                "jDisposisi" => $this->model("jenisDisposisiModel")->getJenis(), //memanggil method di dalam model
+                "user"  => $this->model("User_model")->getAllUser(),
+                "process" => "admin/addDisposisi",
+                "title" => "Add Disposisi"
+            ];
+            $this->view("templates/header", $data);
+            $this->view("admin/disposisi", $data);
+            $this->view("templates/footer");
+        }
+        }
+
         //nanti diisi function disposisi, itu juga baru buat view untuk disposisi
         public function disposisi($id){
             $data = [

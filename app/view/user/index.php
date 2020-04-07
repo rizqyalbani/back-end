@@ -13,6 +13,7 @@
         <li>Instruksi : <?php echo $user['instruksi']?></li>
         <li>jenis disposisi : <?=$data['jenis_disposisi'][$a]?></li>
         <li>Surat dari Instansi : <?php echo $data['suratAsal'][$a]['nama_instansi_surat_masuk'] ?></li>
+        <li>Jenis surat : <?php echo $data['jenisSurat'][$a]?></li>
         <li>
             <?php
                 $d = strtotime($user['postedTime']);

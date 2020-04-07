@@ -79,6 +79,14 @@ class User_model{
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+    public function getJenisSurat($id){
+        // print_r($id);
+        $getStatus = "SELECT * FROM tbl_jenis_surat WHERE id_jenis_surat = :id";
+        $this->db->query($getStatus);
+        $this->db->bind('id', $id);
+        return $this->db->singleResult()['jenis_surat'];
+    }
     
 }
 

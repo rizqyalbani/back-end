@@ -14,7 +14,7 @@
             return $this->db->allResult();
         }
         public function addDisposisi(){
-            print_r($_POST);
+            // print_r($_POST);
             //belom buat tampilin user
             if(isset($_POST['submit'])){
                 $d = time()+21600;//3600 = 60 menit, 21600 / 3600 = dihitung sendiri ya
@@ -32,6 +32,7 @@
                         :instruksi,
                         :id_user,
                         :id_status,
+                        :id_jenis_surat,
                         :id_surat_masuk,
                         :postedTime
                     )";
@@ -44,6 +45,7 @@
             $this->db->bind(':instruksi', $_POST['instruksi'] );
             $this->db->bind(':id_user', $_POST['user'] );
             $this->db->bind(':id_status', 1 );
+            $this->db->bind(':id_jenis_surat', 1 );
             $this->db->bind(':id_surat_masuk', $_POST['id_surat_masuk'] );
             $this->db->bind(':postedTime', $datePost );
             $this->db->execute();
@@ -71,7 +73,7 @@
             return $this->db->allResult();
         }
         public function getDisposisiIdj($id){
-            print_r($id);
+            // print_r($id);
             
             //manggil disposisi berdasarkan user yang bersangkutan
             $binded = $id ;
@@ -122,6 +124,8 @@
             $this->db->bind('id', $id);
             return $this->db->singleResult()['status'];
         }
+
+
 
     }
 ?>
